@@ -92,7 +92,7 @@ This equation can be written in terms of mathematical transformation:
         [0, L-1] \rightarrow N\\
         x \rightarrow Card(x)
     \end{cases}
-    \text{becomes}
+    \text{becomes }
     \begin{cases}
         [0, L-1] \rightarrow [0,1]\\
         x \rightarrow pdf(x) = \frac{Card(x)}{\sum_{i=0}^{L-1} Card(x_i }
@@ -122,7 +122,7 @@ The following rectangularity properties used in Haar-like feature based face det
 \end{figure}
 If an image is represented as a grayscale image pixel values in a 2D matrix M, then Haar values can be calculated using the following equation:
 \begin{align*}
-    Haar\; value = \frac{\sum values\; within\; white\; rectangle\; area\; in\; M}{number\; of\; pixels\; within\; white\; rectangle} \\ -\frac{\sum values\; within\; black\; rectangle\; area\; in\; M}{number\; of\; pixels\; within\; black\; rectangle}
+    Haar\; value = \frac{\sum values\; within\; white\; rectangle\; area\; in\; M}{number\; of\; pixels\; within\; white\; rectangle} \\ - \frac{\sum values\; within\; black\; rectangle\; area\; in\; M}{number\; of\; pixels\; within\; black\; rectangle}
 \end{align*}
 
 The closer the Haar value is to 1, the more likely it is that a facial feature is found. n weak classifier is used within a strong classifier where this type of Haar value is used. After passing some strong classifier a face is detected.\par
@@ -186,7 +186,9 @@ Mostly used kernel functions are Linear, Polynomial, Gaussian (RBF - Radial Basi
                         \tanh(\gamma X_i.X_j + C) ----- Sigmoid\\
                     \end{cases}
 \]
+\begin{flushright}
 where \(K(X_i.X_j) = \phi(X_i).\phi(X_j)\) \par
+\end{flushright}
 that is, the kernel function, represents a dot product of input data points mapped into the higher dimensional feature space by transformation \(\phi\). 
 
 
