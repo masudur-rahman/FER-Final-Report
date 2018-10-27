@@ -1,0 +1,260 @@
+\chapter{Proposed Methodology for Facial Expression Recognition}
+\thispagestyle{empty}
+In our work, given an input image of a person we focused on finding the facial expression of that person by using two separate techniques: CNN and SVM. This chapter gives a brief description of our proposed system architecture that can identify the facial expression of a person.
+
+\section{Proposed System}
+For developing a facial expression recognizer, the main focus is to separate the face portion first and then use a classifier to identify the expression. In Figure \ref{fig:proposed_system}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{images/chapter3/proposed_system.PNG}
+    \caption{Proposed framework of the system}
+    \label{fig:proposed_system}
+\end{figure}
+the proposed framework of the system is shown. The steps involved in the system are described below:\par
+\quad \textbf{Step-1:} In the first step, the input image containing face is acquired for classifying. Then it is passed into the preprocessing stage.\par
+\quad \textbf{Step-2:} Face portion is separated from the given input image using Haar-like features. Then to enhance the contrast of the image histogram equalization is applied on the face portion.\par
+\quad \textbf{Step-3:} From the cropped face portion the appropriate features are extracted and then passed through the classifier. SVM and CNN are used as the classifier.\par
+\quad \textbf{Step-4:} The classifiers need to be trained first to adjust their weights. The training is continued until a satisfactory accuracy is obtained or a specific iteration count is reached.\par
+\quad \textbf{Step-5:} After adjusting the parameters the network is tested on the test images and the network performance is calculated.\par
+Below each module of the system is described in detail.
+
+\subsection{Input Module}
+Input module consists of images with all the seven basic expressions. So, the images are labeled image. For determining the facial expression, image containing exactly one face is taken as input. It is assumed that the images are not oriented or rotated too much. We also considered bearded face images in our input domain. Since we need to perform training on our input dataset, we split the image dataset into training image and testing image. The ratio maintained for training and testing is 8:2, i.e 80\% of the input images are used for training the classifier and 20\% of the input images are used for validating our system.
+
+\subsection{Preprocessing}
+Image preprocessing is a common name for operations with images at lowest level abstraction. It's purpose is to get enhanced image or suppress unwanted distortions or to extract some useful information from it. \par
+For our FER system, image preprocessing consists of several sub-module, i.e. gray-scale conversion, face detection, histogram equalization.\par
+
+\subsubsection{Gray-scale Conversion}
+Gray-scale conversion is the first step in image preprocessing procedure. The face images provided by the input module are the inputs for this process.\par
+To reduce the the computational complexity, gray-scale conversion is used. Gray-scale image has 256 brightness level between black and white for each image pixel intensity. The aim is to have equally distributed brightness over the whole image. \par
+Gray-scale transformation is mostly used if the result is viewed by human.\par
+An illustration is shown in figure \ref{fig:gray_scale} with before and after effect of gray-scale conversion.\par
+
+\begin{figure}[h!]
+    \centering
+    \begin{subfigure}[b]{0.3\linewidth}
+        \includegraphics[width=\linewidth]{images/chapter3/before_grayscale0.jpg}
+        \caption{Before Gray-scale Conversion}
+    \end{subfigure}
+    \hspace{.05cm}
+    \begin{subfigure}[b]{0.3\linewidth}
+        \includegraphics[width=\linewidth]{images/chapter3/after_grayscale0.jpg}
+        \caption{After Gray-scale Conversion}
+    \end{subfigure}
+    \caption{Before and After effect of Gray-scale Conversion}
+\label{fig:gray_scale}
+\end{figure}
+\par
+\subsubsection{Face Detection}
+Face detection process is done with a purpose to detect and separate human face portion from a static image. The computer program that decides whether an image is a positive image (face image) or a negative image (non-face image) is called a classifier. The classifier is trained with a lots of face and non-face images to teach it to recognize whether an image is face image or not.\par
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.3\linewidth}
+        \includegraphics[width=\linewidth]{images/chapter3/after_grayscale0.jpg}
+        \caption{Provided image}
+    \end{subfigure}
+    \hspace{.05cm}
+    \begin{subfigure}[b]{0.3\linewidth}
+        \includegraphics[width=\linewidth]{images/chapter3/after_face_detection0.jpg}
+        \caption{Detected face portion}
+    \end{subfigure}
+    \caption{Detecting the face portion of an Image}
+\label{fig:detect_face}
+\end{figure}
+Figure \ref{fig:detect_face} shows the detected face portion from an image.\par
+
+Haar Classifier is such a widely used classifier to detect face image from any image. This classifier processes images in gray scales as we don't need color information to decide if a picture has a face or not.\par
+Open Source Computer Vision (OpenCV) library provides us pre-trained Haar-Classifier. We used used this Haar classifier provided by OpenCV in our work to detect human face from an image. Then finally cropped the image using the co-ordinates provided by the classifier around the face portion, for further preprocessing steps.\par
+
+\subsubsection{Histogram Equalization}
+Histogram equalization is a method which is used to process images in order to adjust the contrast of an image by modifying the intensity distribution of the histogram. It plays an important role to equalize the brightness of the whole image.\par
+Only the face portion of an image is provided to this part. From some photos feature extraction is almost impossible unless it is equalized with histogram equalization.\par
+
+\begin{figure}[h!]
+    \centering
+    \begin{subfigure}[b]{0.3\linewidth}
+        \includegraphics[width=\linewidth]{images/chapter3/after_face_detection0.jpg}
+        \caption{Before Histogram Equalization}
+    \end{subfigure}
+    \hspace{.05cm}
+    \begin{subfigure}[b]{0.3\linewidth}
+        \includegraphics[width=\linewidth]{images/chapter3/after_histogram0.jpg}
+        \caption{After Histogram Equalization}
+    \end{subfigure}
+    \caption{Before and After effect of Histogram Equalization}
+\label{fig:histogram}
+\end{figure}
+\par
+Figure \ref{fig:histogram} shows before and after effect of histogram equalization.\par
+
+OpenCV library provides built-in method for histogram equalization. We used the histogram equalizer provided by OpenCV in our work to equalize the face image so that we can extract features from those images easily.\par
+
+
+\subsection{Classification}
+For our work we used two different classifiers SVM and CNN. SVM uses facial landmarks to extract features for the recognition procedure and CNN uses automatic feature extraction technique for recognition. The architecture of our classifiers is described below.
+\subsubsection{Classification using SVM}
+FER system can be implemented using with SVM classifier. Classification with SVM is classified into different modules. The preprocessed image is fed into Feature extraction module. The extracted feature is then supplied to SVM Classifier for classifying the provided feature. Feature extraction and SVM Classifier is also divided into some sub-modules. A flowchart of the classification phase is provided below.\par
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\linewidth]{images/chapter3/svm_flowchart.png}
+    \caption{Flow Chart of FER system using SVM Classifier}
+    \label{fig:svm_flowchart}
+\end{figure}
+Figure \ref{fig:svm_flowchart} shows the entire procedure in a nutshell. The following section gives a brief description of each modules and sub-modules.\par
+
+\quad \textbf{Step-1: Input Images:}\\
+The input to our SVM model is a $200 \times 200$ resized photo of a face portion. The image was converted to gray-scale image and equalized with histogram equalization so that the next feature extraction phase is accelarated.\par
+
+\quad \textbf{Step-2: Feature Extraction:}\\
+Feature extraction is one of the most important phases of any machine learning project. Output results mostly depend on the extracted features provided by the feature extraction phase. In many ways feature can be extracted. For our system we used facial landmark co-ordinates for extracting features.\par
+The sub-modules that constitutes the feature extraction module, is briefly described below.
+
+\quad \quad \textbf{Facial Landmark Generation:}\\
+Facial landmark is the points from which we can define the human face. 
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=8cm]{images/chapter3/facial_landmarks_68.jpg}
+    \caption{Facial Landmarks}
+    \label{fig:facial_landmark}
+\end{figure}
+
+Figure \ref{fig:facial_landmark} illustrates the different landmarks of the human face. To generate these facial landmarks we used dlib() library function. Using dlib() library function we can easily generate the facial landmark points from any face image.\par
+
+\quad \quad \textbf{Separating Important Landmarks:}\\
+In this step we separated important features which we will use to generate our feature vector that we need to fed to our SVM classifier. We stored the co-ordinate points of each landmark points. Then we grouped the landmark co-ordinates which defines the eyes, eyebrews, nose, mouth and jaw into respected groups. These separated groups are provided to the next fature generation sub-module.\par
+
+\quad \quad \textbf{Feature Generation:}\\
+This step is important because output of this step is fed into the input module of the SVM Classifier. For generating features, at first we calculated the center of gravity of each eyes and mouth.\par
+We calculated the distance and angle of:
+\begin{itemize}
+    \item Each points of left eyes and left eyrbrews from the center of the gravity of the left eye.
+    \item Each points of right eyes and right eyebrews from the center of the gravity of the right eye.
+    \item Each points of nose and mouth from the center of the gravity of mouth.
+\end{itemize}
+We also calculated the chin height from the landmark point.\par
+Finally, we generated the feature vector using the calculated distance \& angle of the points. We also created a label vector from the label of each image. \par
+This feature and label vector is then passed to the input layer of the SVM Classifier.
+
+\quad \textbf{Step-3: SVM Classifier:}\\
+Support Vector Machines is one of the widely used classifier for classification problem. SVM Classifier normally divided into 3 modules.
+
+\quad \quad \textbf{Input Module:}\\
+The output of the Feature extraction module is the input of the SVM classifier module. The label vector and the feature vector is used as input for SVM classifier.
+
+\quad \quad \textbf{Hidden Layer:}\\
+It's the main working layer of the SVM classifier. In this stage the SVM classifier tries to create a hyperplane between the classes that best segregates the n classes.\par
+SVM tries to maximize the margin between the hyperplanes and data-points. The Hinge loss function helps to maximize the margin by minimizing the value of the hinge loss function. The hinge loss function is defined as:
+\[
+    c(x,y,f(x)) = max(0, 1 - y_i(w^T x_i+b))
+\]
+However the objective of SVM is to minimize the value of the following equation:
+\[
+    \frac{1}{2} ||w||^2 + C \sum_i max(0, 1 - y_i(w^T x_i+b))
+\]
+In hard margin SVM tries to minimize $ ||w||^2 $. The margin is $ \frac{2}{||w||} $. So, if we minimize the norm value of $ w $, it will act like maximizing the margin.\par
+SVM classifier uses a regularization parameter to prevent overfit problem. It is done by penalizing the large coefficients in the solution vector.\par
+
+For multiclass classifier modified technique is used. But all the loss function, regularization parameter and the support vectors that plays the main role in the training and testing phase, all use built-in default functions to do the training and the predictions. \par
+
+\quad \quad \textbf{Output Layer:}\\
+In output layer the recognized expressions are shown. We labeled each one expressions as numeric values from 0 to 6. So we get as output any one numeric value from 0 to 6.
+
+\quad \textbf{Step-4: Training Phase:}\\
+If the accuracy is not satisfying in other words if the error rate is not satisfying the training phase is done again and again until a satisfactory accuracy is obtained.\par
+
+\quad \textbf{Step-5: Testing Phase:}\\
+For testing phase we preprocess the image as like as training phase. After collecting the feature vector from the test image, we pass the feature vector to the trained model for recognizing the facial expressions lying on the face image.\par
+For evaluating our FER system we split the dataset by $8:2$ ratio. $20\% $ of our labeled dataset was used to evaluate the system. We compared the recognized expressions with the actual outputs to see whether the recognition module gave the right expression as output or not.\par
+Using this procedure, we calculated the validation accuracy. From the predicted outputs we generated Confusion matrix and Precision, Recall \& F1 measure for comparing the accuracy with other FER system.
+
+
+\subsubsection{Classification using CNN}
+The cropped face portion is fed to the convolutional neural network. In convolutional neural network we do not need to extract features separately. Features can be automatically extracted in the convolutional layer. In our CNN model we used five layers of convolutional and pooling layer. Then it was further connected to the fully connected layer for each of our output classes. The full architecture of our proposed convolutional neural network is described below.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{images/chapter3/cnn_architecture.PNG}
+    \caption{CNN based classifier}
+    \label{fig:cnn_architecture}
+\end{figure}
+Figure \ref{fig:cnn_architecture} shows all the layers of our CNN architecture. It consists of 5 convolutional and pooling layers and two fully connected layers. All the parameters of the layers are calculated by using the training data sets. The detailed description of the layers are given below.\par
+
+\quad \textbf{Step-1: Input Images:}\\
+The input to our CNN model is a face portion. It is resized into $100 \times 100$ so that the computation cost gets reduced. Since it is a grayscale image it has only one color channel. So, the input image size is ($100 \times100 \times 1$) where the third parameter indicates number of channel. \par
+
+\quad \textbf{Step-2: Convolutional and Pooling layers:}\\
+The input image is passed through five convolutional and pooling layers. Each layer produces more and more important features from its previous layer. Before performing the convolution we perform a padding on the input so that we can also consider the corner edge features.
+\begin{figure}[H]
+    \centering
+    \includegraphics{images/chapter3/zero_padding.PNG}
+    \caption{Performing zero padding on an $4\times 4$ matrix}
+    \label{fig:zero_padding}
+\end{figure}
+Figure \ref{fig:zero_padding} shows the result after performing zero-padding on an input of size $4 \times 4$ to obtain an output of size $6 \times 6$. We can see that the input shape is increased by 2 in height and width.\par
+After performing padding we then use a filter for convolution. In convolution each element of the filter is multiplied with each element of the input in the sliding window. The output matrix $M$ of size $m\times m$ is computed from input matrix N of size $n \times n$ by using a filter F of size $f \times f$ as,
+\[ M_{i,j} = \sum_{p=1}^{f} \sum_{q=1}^{f} F_{p,q} \times N_{i+p-1,j+q-1} \]
+
+\begin{figure}[H]
+    \centering
+    \includegraphics{images/chapter3/convolution_eg.PNG}
+    \caption{Convolution of a $6\times 6$ matrix with a filter size of $3 \times 3$}
+    \label{fig:convolution_eg}
+\end{figure}
+Figure \ref{fig:convolution_eg} shows one example of a convolutional step by using a filter size of $3 \times 3$. A stride of one is used for sliding the window in horizontal and vertical direction. The output shape is reduced to $4\times 4$.\par
+The output of convolution is passed through a rectified linear unit to obtain non-linearity. The output is computed as,
+\[f(x) = max(0, x)\]
+Figure \ref{fig:relu_eg} shows the output after performing a ReLU activation function on the input.
+\begin{figure}[H]
+    \centering
+    \includegraphics{images/chapter3/relu_eg.PNG}
+    \caption{Applying ReLU activation function on the input}
+    \label{fig:relu_eg}
+\end{figure}
+After performing ReLU activation max-pooling is applied to reduce the dimensionality of the input image. Figure \ref{fig:max_pool_eg} shows the output of max pool on an input matrix of size $2\times 2$ with a stride of two. We can see that the output shape is reduced after performing max-pool on the input matrix.
+\begin{figure}[H]
+    \centering
+    \includegraphics{images/chapter3/max_pool_eg.PNG}
+    \caption{Max pooling with stride of 2}
+    \label{fig:max_pool_eg}
+\end{figure}
+All the above mentioned operations are used for five layers and these layers are explained with their shape and filter size.
+
+\quad \quad \textbf{Layer-1:} In our first layer the incoming ($100 \times100 \times 1$) image is first convolved with a $5\times 5$ filter with a padding of 2 and stride of 1. So the output image size remains the same as the input size. The output of the convolution is passed through a ReLU activation function to introduce non-linearity in our system. Then max pooling of size $5\times 5$ is applied to reduce the dimensionality of the image. The stride size is taken same as the filter size for the pooling layer.
+
+\quad \quad \textbf{Layer-2:} The output of first layer which is of size ($20 \times20 \times 32$) is fed to the second layer of our network. Then we apply 64 filters of size $5 \times 5$ on the input with a padding of 2 and stride of 1. The ReLU activation function is applied to get the positive feature. And then max pooling of size $5 \times 5$ is applied with a stride of 5, which produces a size of ($4 \times 4 \times 64$) as its output.
+
+\quad \quad \textbf{Layer-3:} Output of second layer which is of size ($4 \times4 \times 64$) is fed to the third layer of our network. Then we apply 128 filters of size $5 \times 5$ on the input with a padding of 2 and stride of 1. The ReLU activation function is applied to get the positive feature. And then max pooling of size $5 \times 5$ is applied with a stride of 5, which produces a size of ($1 \times 1 \times 128$) as its output. So, now we have got more salient features from our input which consists of 128 values.
+
+\quad \quad \textbf{Layer-4:} In the fourth layer of our network a input of shape ($1 \times1 \times 128$) is fed from the third layer. Here we reduce the number of filters to 64 to reduce the dimensionality. The filter size is $5\times 5$ and the padding size is 2 with a stride of 1. Then again we apply the rectifier linear unit to remove the negative values. So, we get more important features for recognizing the expression.
+
+\quad \quad \textbf{Layer-5:} In our final convolutional layer we further reduce the number of filters from 64 to 32 by using filter size of $5 \times 5$. The padding and stride is of size 2 and 1 consecutively. And again we pass the output through the ReLU activation function to get the positive values. Then max pooling is applied with filter size of $5\times 5$ with same padding and stride size of 5. So, finally our output shape becomes $1 \times 1 \times 32$.
+
+\quad \textbf{Step-3: Fully Connected Layers:}\\
+In the fully connected layer the incoming $1\times1\times32$ is flattened into a vector and fed into a fully connected layer like a normal neural network. $1024$ units are used for the fully connected layer each of which is connected with each 32 output vectors. In figure-\ref{fig:fully_connected} a fully connected layer is shown.
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=2in, keepaspectratio]{images/chapter3/fully_connected.PNG}
+    \caption{Fully Connected Layer}
+    \label{fig:fully_connected}
+\end{figure}
+This fully connected layer is passed through a softmax for our multiclass classifier which is connected to seven output nodes of the output layer. Each output nodes corresponds to a specific facial expression. Softmax assigns a probability for each class that sums up to 1. The node which gets the maximum probability will be considered for the desired output.
+
+\quad \textbf{Step-4: Training Phase:}
+
+\quad \quad \textbf{Weight Initialization:} The created network model needs to be trained to adjust its parameters. Initially all the weights are set randomly from a normal truncated distribution. The randomly generated values follow a normal distribution with a mean value of $0.0$ and standard deviation of $0.02$. Then after each iteration of training weights are adjusted to meet the desired labeled output.
+
+\quad \quad \textbf{Learning Rate:} Learning rate plays a very important role for the training of a CNN model. If the learning rate is too large then the network may not learn the classification problem accurately and it may fail to converge. And if the learning rate is too small it will take a very long time to converge. Our network is trained with a learning rate of $0.001$.
+
+\quad \quad \textbf{Optimizer:} Adam optimizer is used in our CNN model to minimize cost of the error. This optimization algorithm is used instead of the classical stochastic gradient descent procedure to update network weights iteratively based on our training data. It helps to find the weight that achieves minimal error cost on the whole dataset. Adam optimizer achieves a better result comparatively faster than other optimizers when training a deep neural network. So, this was used in our model.
+
+\quad \quad \textbf{Loss Calculation:} We choose categorical cross-entrophy for our loss calculation. Cross-entropy loss, or log loss, measures the performance of a classification model whose output is a probability value between 0 and 1.
+
+Our input dataset was splited into two groups. 80\% of them was used for training purpose. The network was trained for 100 epoch with a batch size of 64.
+
+\quad \textbf{Step-5: Testing Phase:}
+
+After the training is completed the output of the model is checked against the testing set. The testing set consists of 20\% of the images from the labeled dataset. Our network model produces a output which is compared with the actual output. If the recognized expression matches the labeled expression then the prediction is correct, otherwise the prediction is considered to be wrong.
+
+All the steps mentioned above are followed to implement our proposed system. Our main focus was to build a system that can identify the facial expression of everyone including the bearded face people.

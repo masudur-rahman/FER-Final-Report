@@ -1,0 +1,192 @@
+\documentclass[12pt,a4paper]{report}
+
+\usepackage[left=1.57in,top=1.17in,bottom=1in,right=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{csquotes}
+\usepackage{float}
+\usepackage{color}
+\usepackage{gensymb}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{makecell}
+\usepackage[toc,page]{appendix}
+\graphicspath{{images/}}
+% \setlength{\parskip}{\baselineskip}%
+\setlength{\parskip}{10pt}
+\setlength{\parindent}{0pt}
+\setcounter{secnumdepth}{4}
+\begin{document}
+
+% ------------------------------First Title Page-------------------------------
+\begin{titlepage}
+	\centering
+	\includegraphics[width=0.4\textwidth]{CUET_logo.png}\par\vspace{1cm}
+	\vspace{1cm}
+		{\scshape\Large\bfseries Facial Expression Recognition  (Including Bearded Face Image) Using CNN and SVM Approach \\}
+	\vspace{2cm}
+	 
+	\textbf{Md. Billal Hossain}\\
+	\vspace{.2cm}
+	\textbf{ID: 1304027}\\
+	\vspace{.8cm}
+	\textbf{Masudur Rahman}\\
+	\vspace{.2cm}
+	\textbf{ID: 1304042}\\
+	\vspace{2cm}
+	\textbf{October, 2018}
+	
+	\vspace{2.2cm}
+	{\Large\bfseries Department of Computer Science \& Engineering\\}
+	{\large\bfseries Chittagong University of Engineering \& Technology\\}
+	{\bfseries Chittagong-4349, Bangladesh.}
+
+	\vfill
+\end{titlepage}
+\clearpage
+
+% ------------------------------Second Title Page-------------------------------
+\begin{titlepage}
+	\centering
+	%\includegraphics[width=0.15\textwidth]{example-image-1x1}\par\vspace{1cm}
+	{\scshape\LARGE\bfseries Bachelor of Science in Computer Science and Engineering \\}
+	\vspace{8cm}
+	{\scshape\Large\bfseries Facial Expression Recognition  (Including Bearded Face Image) Using CNN and SVM Approach \\}
+	\vspace{3cm}
+	{\scshape\bfseries Md. Billal Hossain\\}
+	\vspace{.2cm}
+	{\scshape\bfseries ID: 1304027\\}
+	\vspace{.8cm}
+	{\scshape\bfseries Masudur Rahman\\}
+	\vspace{.2cm}
+	{\scshape\bfseries ID: 1304042\\}
+	
+	\vspace{3cm}
+	{\Large\bfseries Department of Computer Science \& Engineering\\}
+	{\large\bfseries Chittagong University of Engineering \& Technology\\}
+	\vspace{.2cm}
+	{\bfseries Chittagong-4349, Bangladesh.}
+
+	\vfill
+
+% Bottom of the page
+	{\large {October 29, 2018} \\}
+\end{titlepage}
+\clearpage
+
+% ------------------------------Third Title Page-------------------------------
+\begin{titlepage}
+	\centering
+	{\scshape\Large\bfseries Facial Expression Recognition  (Including Bearded Face Image) Using CNN and SVM Approach \\}
+	\vspace{1cm}
+	\includegraphics[width=0.4\textwidth]{CUET_logo.png}\par\vspace{1cm}
+	\vspace{.5cm}
+	 This thesis is submitted in partial fulfillment of the requirement for the degree of Bachelor of Science in Computer Science \& Engineering.
+	
+	\vspace{1.5cm}
+	Md. Billal Hossain (1304027)\\
+	\vspace{.5cm}
+	Masudur Rahman (1304042)\\
+	
+	\vspace{1.5cm}
+	Supervised by\par 
+	Prof. Dr. Md. Ibrahim Khan\\
+	Department of Computer Science \& Engineering (CSE)\\
+	Chittagong University of Engineering \& Technology (CUET)
+	
+	\vspace{0.5cm}
+	{\Large\bfseries Department of Computer Science \& Engineering\\}
+	{\large\bfseries Chittagong University of Engineering \& Technology\\}
+	\vspace{.2cm}
+	{\bfseries Chittagong-4349, Bangladesh.}
+
+	\vfill
+% Bottom of the page
+	{\large {October 29, 2018} \\}
+\end{titlepage}
+\clearpage
+
+
+% ------------------------------Board Of Examiners-------------------------------
+\pagenumbering{roman}
+% \setcounter{secnumdepth}{-1}
+
+
+\section*{}
+The thesis titled \enquote{{\bfseries Facial Expression Recognition  (Including Bearded Face Image) Using CNN and SVM Approac}}, submitted by ID No. 1304027 and 1304042, Session 2016-2017 has been accepted as satisfactory in fulfillment of the requirement for the degree of Bachelor of Science in Computer Science \& Engineering (CSE) as B.Sc. Engineering to be awarded by the Chittagong University of Engineering \& Technology (CUET).\par 
+\vspace{1cm}
+{\hfil \Large\bfseries Board of Examiners}
+\par 
+\vspace{1.5cm}
+ $1.$\underline{\hspace{8cm}}\hspace{4.4cm}Chairman\par
+ Professor Dr. Md. Ibrahim Khan \hspace{6.22cm}(Supervisor)\par 
+ Department of Computer Science \& Engineering (CSE)\par
+ Chittagong University of Engineering \& Technology (CUET)\par 
+\par 
+\vspace{1.5cm}
+ $2.$\underline{\hspace{8cm}}\hspace{4.7cm}Member\par
+ Professor Dr. Mohammad Shamsul Arefin \hspace{5.1cm}(Ex-officio)\par
+ Head of the Department\par
+ Department of Computer Science \& Engineering (CSE)\par 
+ Chittagong University of Engineering \& Technology (CUET)\par 
+\par 
+\vspace{1.5cm}
+ $3.$\underline{\hspace{8cm}}\hspace{4.7cm}Member\par
+ Professor Dr. Kaushik Deb  \hspace{7.7cm}(External)\par 
+ Department of Computer Science \& Engineering (CSE)\par
+ Chittagong University of Engineering \& Technology (CUET)\par 
+\clearpage
+
+\section*{}
+{\scshape\Large\bfseries\hfil Statement of Originality \par}
+\vspace{1cm}
+It is hereby declared that the contents of this project is original and any part of it has not been submitted elsewhere for the award if any degree or diploma.\par
+\vspace{8cm}
+ 
+\underline{\hspace{5.5cm}} \hspace{3.5cm} \underline{\hspace{5.5cm}}
+\par 
+\vspace{.5cm}
+{\bfseries Signature of the Supervisor\hspace{3cm}Signature of the Candidate-1}\par
+\vspace{1cm}
+\hspace{9cm} \underline{\hspace{5.5cm}}\par
+{\bfseries \hspace{8.45cm} Signature of the Candidate-2}
+\clearpage
+
+
+% -------------------------------Acknowledgement-------------------------------
+\section*{\hfil Acknowledgment \hfil}
+\vspace{1cm}
+First and foremost, We would like to thank Almighty Allah for giving us the strength to finish this work.The satisfaction that accompanies the successful completion of this work would be incomplete without the mention of people whose ceaseless cooperation made it possible, whose constant guidance and encouragement crown all efforts with success. We are grateful to our honorable project Supervisor Dr. Md. Ibrahim Khan, Professor, Department of Computer Science and Engineering, Chittagong University of Engineering and Technology, for the guidance, inspiration and constructive suggestions which were helpful in the preparation of this project. We also convey special thanks and gratitude to all my respected teachers of the department. We would also like to thank friends and the staffs of the department for their valuable suggestion and assistance that has helped in successful completion of the project.
+\clearpage
+
+\section*{\hfil Abstract \hfil}
+\vspace{1cm}
+In this work we tried to identify the facial expression of a person from a given static image. Facial expression plays a very important role for conducting a successful communication. An automatic facial expression recognizer can help a machine to understand the emotion of a person. So, it will allow the machine to act in a more optimized way. In our work we implemented a system that can identify the facial expression of a person. The system was implemented using two different techniques: SVM and CNN. We used Haar-like feature for extracting the face portion. Our system can also identify the expression of bearded person. We trained and tested our dataset on JAFFE, CK+ and our own created bearded face image. Using SVM technique we got 82.22\%, 85.88\% and 71.43\% accuracy and using CNN techniques we got 90.47\%, 89.41\% an 72.00\% accuracy on JAFFE, CK+ and our own created bearded image dataset consecutively.
+\clearpage
+
+\tableofcontents
+\listoffigures
+\listoftables
+\clearpage
+
+\pagenumbering{arabic}
+
+\input{chapter1.tex}
+
+\input{chapter2.tex}
+
+\input{chapter3.tex}
+
+\input{chapter4.tex}
+
+\input{chapter5.tex}
+
+\input{chapter6.tex}
+
+\bibliographystyle{ieeetr}
+\bibliography{citations/ref}
+
+\end{document}

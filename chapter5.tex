@@ -1,0 +1,357 @@
+\chapter{Experimental Results and Discussion}
+\thispagestyle{empty}
+In this chapter, we visualize the output of our system and analyze whether our system was successful in achieving the goals or not. Since we implemented our system using two different techniques the results are shown in different section. Then we show the comparison between the output of these two proposed methods.
+
+\section{Performance Measure using SVM}
+In this phase we will show evaluation method and the results of the FER system using SVM.
+
+\subsection{Evaluation Method}
+For evaluating the system we split all the dataset into training and testing set maintaining the ratio of 8:2 and also 9:1.\par
+Evaluation measure of the system is done by calculating Accuracy, Precision, F1-score of the result of the output result. These terms are briefly described below:\par
+\begin{table}[H]
+\centering
+\caption{Visualizing the Confusion Matrix}
+ \begin{tabular}{|c|c|c|} 
+ \hline
+ Actual \textbackslash Predicted & Class = Yes & Class = No\\
+ \hline
+ Class = Yes & True Positive & False Negative\\
+ \hline
+ Class = No & False Positive & True Negative\\
+ \hline
+ \end{tabular}
+ \end{table}
+
+\quad \textbf{Accuracy Measure:} Accuracy is the ratio of correctly predicted observation to the total observation.
+\[
+    Accuracy = \frac{T_P+T_N}{T_P+F_P+F_N+T_N}
+\]
+\quad \textbf{Precision:} Precision is the ratio of the number of true positives to the number of true positive plus number of false positive.
+\[
+    Precision = \frac{T_P}{T_P+F_P}
+\]
+\quad \textbf{Recall:} Recall is the ratio of the number of true positives to the number of true positive plus number of false negative.
+\[
+    Recall = \frac{T_P}{T_P+F_N}
+\]
+
+These quantities are related to \emph{$F_1$ Score}, which is defined as the harmonic mean of \emph{Precision} and \emph{Recall}. 
+\[
+    F_1 = 2 \times \frac{Precision \times Recall}{Precision + Recall}
+\]
+
+
+For testing set of CK+, JAFFE and Bearded datasets, Confusion Matrix is generated. Then \emph{Precision, Recall and F1 Score} are calculated and plotted in the graph. \par
+%  ["neutral", "happy", "sadness", "anger", "surprise", "fear", "disgust"]
+\quad \textbf{CK+ Dataset}\par
+Table \ref{tab:confusion_ck} shows the confusion matrix for testing set of CK+ dataset which contains 20\% of the whole CK+ dataset.\par
+\begin{table}[H]
+    \centering
+    \caption{Confusion Matrix for CK+ dataset}
+    \label{tab:confusion_ck}
+    \begin{tabular}{|c|c|c|c|c|c|c|c|}
+        \hline
+        In \textbackslash Out & Neutral & Happy & Sadness & Anger & Surprise & Fear & Disgust \\
+        \hline
+        Neutral & 20 & 0 & 1 & 0 & 0 & 0 & 1\\
+        \hline
+        Happy & 0 & 14 & 0 & 0 & 0 & 0 & 0\\
+        \hline
+        Sadness & 3 & 0 & 3 & 0 & 0 & 0 & 0\\
+        \hline
+        Anger & 1 & 0 & 1 & 7 & 0 & 0 & 0\\
+        \hline
+        Surprise & 1 & 0 & 0 & 0 & 15 & 1 & 0\\
+        \hline
+        Fear & 0 & 0 & 0 & 0 & 1 & 4 & 0\\
+        \hline
+        Disgust & 1 & 0 & 0 & 1 & 0 & 0 & 10\\
+        \hline
+    \end{tabular}
+\end{table}
+
+Table \ref{tab:precision_ck} shows the \emph{Precision, Recall and F-Score} for testing set of CK+ dataset, containing 20\% of the whole CK+ dataset.\par
+
+\begin{table}[H]
+    \centering
+    \caption{Precision, Recall and F-Score}
+    \label{tab:precision_ck}
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        Expression & Precision & Recall & F-Score \\
+        \hline
+        Neutral & 0.77 & 0.91 & 0.83\\
+        \hline
+        Happy & 1.00 & 1.00 & 1.00\\
+        \hline
+        Sadness & 0.60 & 0.50 & 0.55\\
+        \hline
+        Anger & 0.88 & 0.78 & 0.82\\
+        \hline
+        Surprise & 0.94 & 0.88 & 0.91\\
+        \hline
+        Fear & 0.80 & 0.80 & 0.80\\
+        \hline
+        Disgust & 0.91 & 0.83 & 0.87\\
+        \hline
+    \end{tabular}
+\end{table}
+
+Following figure \ref{fig:precision_curve_ck} shows the \emph{Precision, Recall and F-Score Curve} for the testing set of CK+ dataset.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=5in,height=4.5in]{images/chapter5/ck82_extension_precision_recall.png}
+    \caption{Precision, Recall Curve for CK+ dataset}
+    \label{fig:precision_curve_ck}
+\end{figure}
+
+Another performance measuring curve, \emph{Receiver Operating Curve (ROC) curve} is shown in figure \ref{fig:roc_curve_ck}. \par
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=4.5in,height=2.55in]{images/chapter5/ck82_ROC_curve.png}
+    \caption{ROC Curve for CK+ dataset}
+    \label{fig:roc_curve_ck}
+\end{figure}
+
+
+
+\quad \textbf{Bearded Dataset}\par
+Table \ref{tab:confusion_bearded} shows the confusion matrix for testing set of JAFFE dataset which contains 20\% of the whole JAFFE dataset.
+\begin{table}[H]
+    \centering
+    \caption{Confusion Matrix for Bearded dataset}
+    \label{tab:confusion_bearded}
+    \begin{tabular}{|c|c|c|c|c|c|c|c|}
+        \hline
+        In \textbackslash Out & Neutral & Happy & Sadness & Anger & Surprise & Fear & Disgust \\
+        \hline
+        Neutral & 3 & 0 & 0 & 1 & 0 & 0 & 0\\
+        \hline
+        Happy & 0 & 5 & 0 & 0 & 0 & 0 & 0\\
+        \hline
+        Sadness & 0 & 1 & 2 & 0 & 0 & 0 & 0\\
+        \hline
+        Anger & 1 & 0 & 0 & 3 & 0 & 0 & 0\\
+        \hline
+        Surprise & 1 & 0 & 0 & 0 & 4 & 0 & 0\\
+        \hline
+        Fear & 1 & 0 & 1 & 0 & 0 & 1 & 0\\
+        \hline
+        Disgust & 0 & 0 & 1 & 1 & 0 & 0 & 2\\
+        \hline
+    \end{tabular}
+\end{table}
+
+Table \ref{tab:precision_bearded} shows the \emph{Precision, Recall and F-Score} for testing set of Bearded dataset, containing 20\% of the whole Bearded dataset.
+
+\begin{table}[H]
+    \centering
+    \caption{Precision, Recall and F-Score}
+    \label{tab:precision_bearded}
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        Expression & Precision & Recall & F-Score \\
+        \hline
+        Neutral & 0.50 & 0.75 & 0.60\\
+        \hline
+        Happy & 0.83 & 1.00 & 0.91\\
+        \hline
+        Sadness & 0.50 & 0.67 & 0.57\\
+        \hline
+        Anger & 0.60 & 0.75 & 0.67\\
+        \hline
+        Surprise & 1.00 & 0.80 & 0.89\\
+        \hline
+        Fear & 1.00 & 0.33 & 0.50\\
+        \hline
+        Disgust & 1.00 & 0.50 & 0.67\\
+        \hline
+    \end{tabular}
+\end{table}
+
+
+Another performance measuring curve, \emph{Receiver Operating Curve (ROC) curve} is shown in figure \ref{fig:roc_curve_brearded}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=4.5in,height=2.55in]{images/chapter5/bearded82_ROC_curve.png}
+    \caption{ROC Curve for CK+ dataset}
+    \label{fig:roc_curve_bearded}
+\end{figure}
+
+Following figure \ref{fig:precision_curve_bearded} shows the \emph{Precision, Recall and F-Score Curve} for the testing set of JAFFE dataset.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=6in,height=5in]{images/chapter5/bearded82_extension_precision_recall.png}
+    \caption{Precision, Recall Curve for JAFFE dataset}
+    \label{fig:precision_curve_bearded}
+\end{figure}
+
+
+\quad \textbf{Results:}\par
+Final Accuracy of each dataset is shown in table \ref{tab:accuracy}. All accuracy was calculated on the 20\% testing set.
+
+\begin{table}[H]
+    \centering
+    \caption{Accuracy of Each Dataset}
+    \label{tab:accuracy}
+    \begin{tabular}{|c|c|}
+        \hline
+        Dataset & Accuracy \\
+        \hline
+        CK+ & 85.88\% \\
+        \hline
+        JAFFE & 82.22\% \\
+        \hline
+        Bearded & 71.43\% \\
+        \hline
+    \end{tabular}
+\end{table}
+As the size of the \emph{Bearded} dataset was not large enough, the accuracy wasn't upto the mark. Splitting the \emph{Bearded} dataset by 9:1 ratio, we got an accuracy of 81.25\%.
+
+
+
+
+
+
+
+\section{Performance Measure using CNN}
+\subsection{Evaluation Method}
+For training and testing using CNN each dataset was split by maintaining a $8:2$ ratio. And then the weight is adjusted using the training set and the testing set is used for the performance measure. The total number of images in training and testing module for each dataset is shown in table \ref{tab:train_test_size}.
+
+\begin{table}[H]
+    \centering
+    \caption{Size of the training and testing data}
+    \label{tab:train_test_size}
+    \begin{tabular}{|c|c|c|c|} 
+    \hline
+        Dataset & \makecell{Total Number\\of images} & \makecell{Number of\\training images} & \makecell{Number of\\testing images}\\
+    \hline
+        JAFFE & 213 & 171 & 42\\
+        \hline
+        CK+ & 416 & 331 & 85\\
+        \hline
+        Bearded face & 129 & 104 & 25\\
+    \hline
+    \end{tabular}
+\end{table}
+
+\quad \textbf{Accuracy measure:} In the testing data if the recognized expression is same as the labeled expression then the result is considered to be correct otherwise it is considered to be wrong.
+
+\quad If the total number of correctly predicted expression is R and total number of wrongly predicted expression is W, then the accuracy of the testing set is computed as,
+\[
+    Accuracy = \frac{R}{R+W}
+\]
+
+\quad \textbf{Loss measure:} We measure our loss based on Categorical Cross-Entropy. It is basically a softmax activation plus a cross-entropy loss. For mutually exclusive classification task it computes the probability error.
+
+\quad The output of the softmax is computed as,
+\[
+f(s)_i = \frac{e^{s_i}}{\sum_{j}^{C} e^{s_j}}
+\]
+\hspace*{1in} Where,\\
+\hspace*{1.5in} $s_p$ = CNN score for the positive class p\\
+\hspace*{1.5in} C = total number of output classes
+
+\quad The output of the cross-entropy loss is calculated as,
+\[
+CE = -\sum_{i}^{C} {t_i}log(f(s)_i)
+\]
+\hspace*{1in} Where,\\
+\hspace*{1.5in} $t_i$ = $i$'th target label\\
+\hspace*{1.5in} $f(s_i)$ = output of softmax activation function for class $i$
+
+\subsection{Result}
+First we set the parameters of our model by training on the train data set. As the number of iteration increases the accuracy increases for a certain steps.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{images/chapter5/train_acc.PNG}
+    \caption{Training Accuracy vs. Number of Iteration}
+    \label{fig:train_acc}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{images/chapter5/val_acc.PNG}
+    \caption{Validation Accuracy vs. Number of Iteration}
+    \label{fig:val_acc}
+\end{figure}
+In figure-\ref{fig:train_acc} and figure-\ref{fig:val_acc} accuracy vs training steps curves are shown, where accuracy increases with each training step. But after certain steps the model converges and the validation accuracy does not increase. And we stop our training there.
+
+We calculate the loss at each training steps. Fig-\ref{fig:loss_test} shows the loss curve on 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{images/chapter5/loss_test.PNG}
+    \caption{Loss vs. Number of Iteration}
+    \label{fig:loss_test}
+\end{figure}
+ bearded face image validation set. The figure shows that at step 170 the curve goes very high because the training set was near to overfit. At later steps the loss get reduced.
+
+After performing training for each dataset we compute the accuracy on the testing set. The output result of testing is shown in table \ref{tab:accuracy_cnn}.
+\begin{table}[H]
+    \centering
+    \caption{Accuracy on different dataset}
+    \label{tab:accuracy_cnn}
+    \begin{tabular}{|c|c|c|c|}
+    \hline
+        Dataset & \makecell{Number of correctly\\predicted images} & \makecell{Number of wrongly\\predicted images} & \makecell{Accuracy}\\
+    \hline
+        JAFFE & 38 & 4 & 90.47\%\\
+        \hline
+        CK+ & 76 & 9 & 89.41\%\\
+        \hline
+        Bearded face & 18 & 7 & 72.00\%\\
+    \hline
+    \end{tabular}
+\end{table}
+
+From the test accuracy we can see that the output for JAFFE and CK+ dataset is better than the Bearded face image dataset.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{images/chapter5/chart.PNG}
+    \caption{Effect of training data size on accuracy}
+    \label{fig:chart}
+\end{figure}
+ In the figure-\ref{fig:chart} the effect of training data size on accuracy is shown for CK+ dataset. We can see that as the training data size decreases the accuracy also decreases.
+
+\section{Comparison of the two Proposed Methods}
+We compared the output of our both methods. The result of the comparison is shown in table \ref{tab:svm_vs_cnn}. The table shows that CNN gives better result than SVM. But 
+\begin{table}[H]
+    \centering
+    \caption{Performance comparison between SVM and CNN}
+    \label{tab:svm_vs_cnn}
+    \begin{tabular}{|c|c|c|} 
+    \hline
+        Dataset & \makecell{Accuracy using\\SVM} & \makecell{Accuracy using\\CNN}\\
+    \hline
+        JAFFE & 82.22\% & 90.47\%\\
+        \hline
+        CK+ & 85.88\% & 89.41\%\\
+        \hline
+        Bearded face & 71.43\% & 72.00\%\\
+    \hline
+    \end{tabular}
+\end{table}
+in terms of run time complexity CNN takes more time than SVM since CNN has to perform many calculation at each hidden layers.
+
+\section{Unsuccessful Case}
+For some expressions its hard to tell the actual output even for human. This problems occur mostly between disgust and anger.
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.3\linewidth}
+        \includegraphics[width=\linewidth]{images/chapter5/anger_wrong.png}
+        \caption{Disgust classified as Anger}
+    \end{subfigure}
+    \hspace{0.4cm}
+    \begin{subfigure}[b]{0.3\linewidth}
+        \includegraphics[width=\linewidth]{images/chapter5/anger_wrong2.png}
+        \caption{Anger classified as Disgust}
+    \end{subfigure}
+    \caption{Some unsuccessful recognition}
+\label{fig:anger_disgust}
+\end{figure}
+Figure \ref{fig:anger_disgust} shows two examples of wrong classification. Although the disgust looks similar to anger expression but it is actually a disgust expression.
+\section{Discussion}
+In our work we tried to find the facial expression of a person from a static image. We carried out our experiment on three different dataset among which JAFFE and CK+ are very popular and we got a satisfactory result on both of those datasets. Our third data set was mainly used for bearded face image and we got 72.00\% accuracy using CNN and 71.43\% accuracy on that dataset. Our system gives wrong results mostly for anger and disgust as their expression is closely related to each other. Beside there is no remarkable work with bearded face images so we tried to implement a system that can give a better identification on every types of face.

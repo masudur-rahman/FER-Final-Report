@@ -1,0 +1,251 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%----------------------------Chapter Two-------------------------%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Literature Review}
+\thispagestyle{empty}
+Facial expressions convey information about human emotional states, intentions, mood, stances and so on. A slight change in facial muscles may produce a different expressions. And these changes in face features can be used to detect their emotions. In this chapter we present the terminologies that are used in our project, which are needed for understanding the work. This chapter also contains a detail information on previous work that has already been implemented with their limitations.
+
+\section{Emotion}
+Emotions can be referred to as human inner feelings. It is really hard to give an exact definition for emotion. Fehr and Russell (1984) wrote "Everyone knows what an emotion is; until asked to give a definition" \cite{fehr1984concept}. Emotions are loosely regarded as a reaction to personally significant events where the reaction may include biological/physiological arousal, changes in cognitive processes, behavioral/social/motor expression, action tendencies and subjective labeling of these feelings \cite{kleinginna1981categorized}. Music and arts can also be a way for expressing emotions. But facial expression plays the most vital part in this task. The research on facial expression began with Darwin's study on the expresssion of emotions in man and animals \cite{darwin1998expression}.\par
+Charles Darwin concluded that emotions are universal. In furthering Darwin's research Ekman carried out a crosscultural research on facial expression of emotion. In his research on the Fore tribesmen of Papua New Guinea, he observed that members of this tribe could identify the expressions of emotion in photographs of people from cultures with which they had not interacted. From this research he concluded that the expressions of some emotions were basic and closely related among all cultures. More and more research on emotions has led to the categorization of emotions to basic and secondary emotions. Ekman's first list of basic emotions included anger, disgust, fear, happiness, sadness and surprise \cite{ekman1973cross}. Later he added more emotions on this list, but we only consider the first list of basic emotions. A brief description of these emotions is given below:
+\begin{enumerate}
+    \item \textbf{Happy:} It is an emotion of feeling or showing pleasure, contentment or delight.
+    \item \textbf{Sad:} It means feeling or showing sorrow. Sad is expressed as the result of grief or unhappiness.
+    \item \textbf{Angry:} Angry means feeling or showing strong annoyance, displeasure, or hostility. Someone may feel angry due to lack of joy or a lack of judgment or a sense of hatred or overall frustration.
+    \item \textbf{Fear:} An unpleasant emotion or thought that someone feels when he is frightened or worried by something dangerous, painful, or bad that is happening or might happen.
+    \item \textbf{Surprise:} Surprise is the feeling that someone feels when something unexpected happens. An unexpected or astonishing event or fact may result into a surprise.
+    \item \textbf{Disgust:} A feeling of strong disapproval or disliked aroused by something unpleasant or offensive.
+    \item \textbf{Neutral:} It is an impartial or unbiased state or person. It means none of the above emotions are present.
+\end{enumerate}
+There can be many other emotions, but these are the pretty basic emotions that are commonly used to identify ones feelings.
+
+\section{Facial Expression}
+Face is one of the most expressive areas of the body that is capable of producing various types of expressions. During interacting with other people it is the area that is most closely observed. Facial expression is one or more motions or positions of the muscles beneath the skin of the face. Facial expressions acts as a form of non-verbal communication. Sometimes people can understand the feeling of other persons just by looking at their face. Facial expressions have been studied and categorized by researchers in accordance to main expressions and physical movements of eye blink and head or mouth movement etc.\par
+There are many control parameters that determines the expression of the face. Eye, Eyebrows, Mouth and Nose plays the most important role as the parameter in determining expressions. These parameters collectively approximate the expressive actions of the important facial muscles.
+\begin{enumerate}
+    \item \textbf{Happiness:} For happy expression (Figure-\ref{fig:Happiness}) the eyebrows are relaxed and the mouth is open. The mouth corner is pulled back towards the ears and the lip corners are raised diagonally.
+    \begin{figure}
+        \centering
+        \includegraphics{images/chapter2/happy.PNG}
+        \caption{Happiness}
+        \label{fig:Happiness}
+    \end{figure}
+    \item \textbf{Sadness:} For sad expression (Figure-\ref{fig:Sadness}) the eyes are slightly closed and the lip corners are pulled downward. The inner corner of the eyebrows are pulled upward.
+    \begin{figure}[h!]
+        \centering
+        \includegraphics{images/chapter2/sad.PNG}
+        \caption{Sadness}
+        \label{fig:Sadness}
+    \end{figure}
+    \item \textbf{Anger:} For anger expression (Figure-\ref{fig:Anger}) the eyebrows are pulled down and the eyes are wide open. The upper lids and lower lids are pulled up. The lips are pressed against each other.
+    \begin{figure}[H]
+        \centering
+        \includegraphics{images/chapter2/anger.PNG}
+        \caption{Anger}
+        \label{fig:Anger}
+    \end{figure}
+    \item \textbf{Fear:} For fear expression (Figure-\ref{fig:Fear}) the eyebrows are raised and pulled together. The eyes are alert and tensed. The upper mouth is stretched.
+    \begin{figure}[H]
+        \centering
+        \includegraphics{images/chapter2/fear.PNG}
+        \caption{Fear}
+        \label{fig:Fear}
+    \end{figure}
+    \item \textbf{Surprise:} For surprise expression (Figure-\ref{fig:Surprise}) the entire eyebrows are raised up, the upper eyelids becomes wide open. The mouth hangs open and the jaw expands.
+    \begin{figure}[H]
+        \centering
+        \includegraphics{images/chapter2/surprise.PNG}
+        \caption{Surprise}
+        \label{fig:Surprise}
+    \end{figure}
+    \item \textbf{Disgust:} For disgust expression (Figure-\ref{fig:Disgust}) the upper lip is pulled up and curved. The lower lip gets loose and the eyebrows are pulled down.
+    \begin{figure}[H]
+        \centering
+        \includegraphics{images/chapter2/disgust.PNG}
+        \caption{Disgust}
+        \label{fig:Disgust}
+    \end{figure}
+    \item \textbf{Neutral:} For neutral expression all face muscles are relaxed and the eye lids are tangent to the iris, the mouth is closed and the lips are in contact.
+\end{enumerate}
+This are the basic expressions found in all community. By depending on the parameters described above one can identify the expression of the person he is interacting with.
+
+\section{Previous Work}
+The research of developing automatic Facial Expression Recognition (FER) systems has attracted considerable attention in the past ten years due to their potential applications. There are many works for recognizing the expressions from the image. The FER system is composed of 3 main elements: face detection, feature extraction and expression recognition. Different methods were proposed for each stage of the system, however, only the major ones are mentioned here.
+
+\subsection{Face Detection}
+As mentioned earlier, 3 important stages constructs the FER system. In the first stage, system takes input image and performs some image processing techniques on it in order to find the face region.System can operate on static images, where this procedure is called face localization or videos where we are dealing with face tracking.\par
+Major problems which can be encountered at this stage are different scales and orientations of face.They are usually caused by changes in distance from camera what makes face detection harder. What is more, complexity of background and variety of lightning conditions can also be quite confusing in detection or tracking. For instance, when there is more than one face in the image, system should be able to distinguish which one to detect or track. Last but not least, occlusions which usually appear in spontaneous reactions, need to be handled as well. To remove such occlusions a technique Histogram Equalization is widely used. Then any one of the Face Detection techniques is applied. Most widely used face detection technique is Haar-Like feature based face detection. These two techniques are briefly described below.
+\subsubsection{Histogram Equalization}
+The histogram of a digital image is a distribution of its discrete intensity values in the range \([0, L-1]\). The distribution is a discrete function \(h\) associating to each intensity level: \(r_k\) the number of pixel with this intensity: \(n_k\).\par
+\textbf{Normalization of a Histogram}\par
+Normalization of histogram is done by transforming the discrete distribution of intensities into a discrete distribution of probabilities. It is done using the following equation: 
+\[
+    n_{kn} = \frac{n_k}{length \text{x} width} = p_r(r_k)
+\]
+This equation can be written in terms of mathematical transformation:
+\[
+    \begin{cases}
+        [0, L-1] \rightarrow N\\
+        x \rightarrow Card(x)
+    \end{cases}
+    \text{becomes}
+    \begin{cases}
+        [0, L-1] \rightarrow [0,1]\\
+        x \rightarrow pdf(x) = \frac{Card(x)}{\sum_{i=0}^{L-1} Card(x_i }
+    \end{cases}
+\]
+Where Card means the cardinality of the set so in ourcase the number of pixel.\par
+\textbf{Equalization of a Histogram}\par
+Histogram equalization is a method which is used to process images in order to adjust the contrast of an image by modifying the intensity distribution of the histogram. This technique provides the cumulative probability function associated to the image.\par
+The cumulative probability function (cdf) is one of the main functions on which the histogram equalization relies. The cdf is a cumulative sum of all the probabilities lying in its domain and defined by:
+\[
+    cdf(x) = \sum_{k=-\infty}^{x} P(k)
+\]
+A linear cumulative distribution function is provided to the resulting image. In fact, a linear cdf is associated to the uniform histogram already exists in the resulting image.\\
+To get the new pdf the following formula is used:
+\[
+    S_k = (L-1) cdf(x)
+\]
+
+\subsubsection{Haar-Like Feature Based Face Detection Technique}
+Haar-like features are widely used digital image features used in object detection. Viola and Jones \cite{viola2001rapid} adapted the idea of using Haar wavelets to develop the Haar-like features. Haar-like feature based technique can be used to detect human faces. It uses rectangularity property to find any face. A Haar-like feture considers adjacent rectangular regions at a specific location in a detection window, sums up the pixel intensities in each region and calculates the difference between these sums.\par
+The following rectangularity properties used in Haar-like feature based face detection technique.
+\begin{figure}[H]
+    \centering
+    \includegraphics{images/chapter2/haar-like.png}
+    \caption{Rectangularity Properties of Haar-like Feature based Face Detection}
+    \label{fig:haar_like}
+\end{figure}
+If an image is represented as a grayscale image pixel values in a 2D matrix M, then Haar values can be calculated using the following equation:
+\begin{align*}
+    Haar\; value = \frac{\sum values\; within\; white\; rectangle\; area\; in\; M}{number\; of\; pixels\; within\; white\; rectangle} \\ -\frac{\sum values\; within\; black\; rectangle\; area\; in\; M}{number\; of\; pixels\; within\; black\; rectangle}
+\end{align*}
+
+The closer the Haar value is to 1, the more likely it is that a facial feature is found. n weak classifier is used within a strong classifier where this type of Haar value is used. After passing some strong classifier a face is detected.\par
+
+Other techniques are also used for face detection. Some of them are mentioned below:
+\begin{enumerate}
+    \item \textbf{Feature Base Face Detection:} Anima Majumder, L. Behera and Venkatesh K Subramanian et. al. used the basic concepets of facial geometry. They proposed to locate the mouth, nose and eyes position to detect face \cite{majumder2014emotion}.
+    \item \textbf{Geometric Based Face Detection:} Padma Polash Paul and Marina Gavrilova et. al. presented a PCA based modeling of geometric structure of the face for automatic face detection \cite{paul2011pca}.
+    \item \textbf{High-Level Language based Face Detection:} P Daesik Jang, Gregor Miller, Sid Fels and Steve Oldridge et. al. proposed a method using a user oriented language model for face detection \cite{jang2011user}.
+    \item \textbf{Haar-Like Feature Based Face Detection:} T Ning Jiang, Wenxin Yu, Shaopeng Tang, Satoshi Goto et. al. proposed a new algorithm to improve the performance of feature based cascade detector for face detection \cite{jiang2011cascade}.
+\end{enumerate}
+
+
+\subsection{Feature Extraction}
+Deriving a set of features from original face images to effectively represent faces is known as Facial representation. Facial representation in other words, feature extraction is the most important part of any recognition or classification problem. Any kind of failure in feature extraction may lead to failure of the total procedure.\par
+Facial geometry analysis has been widely exploited in facial representation \cite{pantic2006dynamics}, where shapes and locations of facial components are extracted to represent the face geometry. Facial Landmark detection is a well-known geometric feature extraction technique. It can be used to produce necessary features for further recognition module.\par
+
+Another kind of method to represent faces is to model the appearance changes of faces. Independent Component Analysis (ICA) \cite{bartlett2002face} and Gabor wavelet analysis \cite{lyons1999automatic} have been applied to either the whole-face or specific face regions to extract the facial appearance changes. Due to their superior performance, Gabor-wavelet representations have been widely adopted in face image analysis. However, the computation of Gabor-wavelet representations is both time and memory intensive, for example, in the Gavor-wavelet representation derived from each 48x48 face image has the high dimensionality of \(O(10^5)\). Recently Local Binary Patterns have been introduced as effective appearance features for facial image analysis \cite{ahonen2004face}.\par
+
+
+\subsection{Expression Recognition}
+Different techniques have been proposed to classify facial expressions, such as Convolutional Neural Network, Support Vector Machine (SVM), Bayesian Network (BN) and rule-based classifiers. In Lyons et al. work \cite{lyons1999automatic}, the principle components of the feature vectors from training images were analyzed by LDA to form discriminant vectors, and facial image classification was performed by projecting the input vector of a testing image along the discriminant vectors. Bartlett et al. \cite{bartlett2005recognizing} performed systematic comparison of different techniques including AdaBoost, SVM and LDA for facial expression recognition, and best results were obtained by selecting a subset of Gabor filters using AdaBoost and the training SVM on the outputs of the selected filters. There have been several attempts to track and recognize facial expressions over-time base on optical flow analysis.\par
+Support Vector Machines (SVMs) and Convolutional Neural Network (CNN) methods are briefly mentioned below:
+
+\subsubsection{Support Vector Machines(SVM)}
+Support Vector Machines are based on the concept of decision planes that define decision boundaries.A decision plane is the one that separates between a set of objects having different class memberships. The decision plane is set in such a way that margin from the two classes is maximum. Two different decision planes are illustrated in the figure below:
+\begin{figure}[h!]
+    \centering
+    \begin{subfigure}[b]{0.35\linewidth}
+        \includegraphics[width=\linewidth]{images/chapter2/SVMIntro1.png}
+        \caption{Linear}
+    \end{subfigure}
+    \hspace{0.2cm}
+    \begin{subfigure}[b]{0.35\linewidth}
+        \includegraphics[width=\linewidth]{images/chapter2/SVMIntro2.png}
+        \caption{Non-linear}
+    \end{subfigure}
+    \caption{Decision plane}
+\label{fig:svm_intro}
+\end{figure}
+The original objects are mapped, i.e. rearranged, using a set of mathematical functions, known as kernels. The process of rearranging the objects is known as mapping (transformation). The concepts are illustrated in the following figure.\par
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=2.79in,keepaspectratio]{images/chapter2/SVMIntro3.png}
+    \caption{Rearranging input space in feature space}
+    \label{fig:mapping}
+\end{figure}
+
+\textbf{Support Vectors}\par
+The parameters that form the decision hyperplane of support vector machines are called support vectors. In other words, the points that lies on the decision plane is known as support vectors.\par
+To set this support vectors some kernel functions are used. Some well-known kernel  functions are mentioned below.\par
+
+
+\textbf{Kernel Functions}\par
+Mostly used kernel functions are Linear, Polynomial, Gaussian (RBF - Radial Basis Function) and Sigmoid kernels. Different kernels are suitable for different situations depending on the size of the sample input and size of the feature space. Mathematical Equations of these kernels given below.\par
+\[
+    K(X_i, X_j) =   \begin{cases}
+                        X_i.X_j ----------- Linear\\
+                        (\gamma X_i.X_j+C)^d ----- Polynomial\\
+                        \exp(-\gamma | X_i-X_j|^2) ------ RBF\\
+                        \tanh(\gamma X_i.X_j + C) ----- Sigmoid\\
+                    \end{cases}
+\]
+where \(K(X_i.X_j) = \phi(X_i).\phi(X_j)\) \par
+that is, the kernel function, represents a dot product of input data points mapped into the higher dimensional feature space by transformation \(\phi\). 
+
+
+
+
+\subsubsection{Convolutional Neural Network(CNN)}
+Similar to an ordinary neural network a Convolutional Neural Network(CNN) is made up of neurons that have learnable weights and biases. Each neuron receives some inputs, performs a dot product and optionally follows it with a non-linearity. Simply a convolutional neural network is a sequence of layers, and every layer of a convolutional neural network transforms one volume of activations to another through a differentiable function. 
+\begin{figure}[H]
+    \centering
+    \includegraphics{images/chapter2/cnn_basic.png}
+    \caption{Structure of a Convolutional Neural Network}
+    \label{fig:cnn_basic}
+\end{figure}
+Some commonly used terms in a Convolutional Neural Network is given below:
+\begin{itemize}
+    \item \textbf{Filter:} A filter also known as kernel or feature detector, is an integral component of the layered architecture. It is a smaller-sized matrix in comparison to the input dimensions of the image, that consists of real valued entries. Filters are convolved with the incoming input volume to obtain the feature map. Each entries of the filter changes after each iteration so that the output of the network matches the training set.
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\linewidth]{images/chapter2/convolve.png}
+        \caption{Convolution of a $6\times 6$ image with a $3\times 3$ filter}
+        \label{fig:convolve}
+    \end{figure}
+    If the incoming input image of size $N\times N$ is convolved with a filter size of $F\times F$ then the output image size will be $(N-F+1)\times (N-F+1)$. In figure-\ref{fig:convolve} an input image of size $6\times 6$ is convolved with a filter size of $3\times 3$ to obtain a $4\times 4$ output image.
+    \item \textbf{Padding:} In CNN there can be two types of padding: i) Valid padding, ii) Same padding, to determine either the input considers the boundary pixels or not. In valid padding no extra zeros are added with the input image. But in same padding extra zeros are padded with the input image to keep the output image size same as the input image size after convolution.
+    \begin{figure}[H]
+        \centering
+        \includegraphics{images/chapter2/padding.png}
+        \caption{A zero padded $28\times 28$ matrix becomes $32\times 32$ matrix}
+        \label{fig:padding}
+    \end{figure}
+     If we perform padding of size $P$ on an input image of size $N\times N$ then the output image size will be $(N+2P)\times (N+2P)$. In figure-\ref{fig:padding} the input image size is ($28 \times 28 \times 1$). If we think two borders of zeros around our input image this will produce image size of ($32 \times 32 \times 1$).
+     \item \textbf{Stride:} Stride is the number of pixels with which we slide our filter, horizontally or vertically along our input images during performing an operation. If the stride is 1 then we move the filters to 1 pixel at a time. When the stride is 2 then we move the filters to 2 pixels at a time and so on.
+\end{itemize}
+A convolutional neural network has mainly three types of layers:
+\begin{itemize}
+    \item \textbf{Convolutional layer:} A convolutional layer computes the output of neurons that are connected to the local regions in the input, each computing a dot product between their weights and a small region that are connected to the input volume. Multiple filters can be used in this layer for multiple feature extraction. Various types of activations like ReLU, Sigmoid, Tanh etc can be applied in this layer.
+    \begin{itemize}
+        \item \textbf{ReLU:} ReLU stands for Rectified Linear Unit. It introduce non-linearity in the system. The output is calculated as $f(x) = max(0,x)$.
+    \end{itemize}
+    \item \textbf{Pooling layer:} Pooling layer performs a downsampling operation along the spatial dimensions (width, height). This layer can be of several types, like max pool, average pool or sum pool etc.
+    \begin{itemize}
+        \item \textbf{Max Pooling:} Takes the maximum element from the rectified feature map.
+        \item \textbf{Average Pooling:} Takes the average of the elements from the rectified feature map.
+        \item \textbf{Sum Pooling:} Takes the sum of all elements from the rectified feature map.
+    \end{itemize}
+    \item \textbf{Fully connected layer:} In a fully connected layer every neuron in one layer is connected to every other neurons in another layer. It can be further connected to a fully connected layer for multiclass classifiers.
+\end{itemize}
+Entering a convolutional layer the feature map of upper layer can be divided into lots of local areas and convoluted respectively with trainable kernels which further produces new features as output.
+
+\subsection{Recent Advances}
+\textbf{SVM Related}\par
+The original SVM algorithm was invented by Vladimir N. Vapnik and Alexey Ya. Chervonenkis in 1963. In 1992, Bernhard E. Boser, Isabelle M. Guyon and Vladimir N. Vapnik suggested a way to create nonlinear classifiers by applying the kernel trick to maximum-margin hyperplanes \cite{boser1992training}. The current standard was proposed by Corinna Cortes and Vapnik in 1993 and published in 1995 \cite{cortes1995support}.\par
+In 2017, Vanita Jain, Pratiksha Aggarwal et. al. \cite{jain2017emotion} proposed a support vector machine architecture using feature extracted by dlib's facial landmark. It was only trained using JAFFE database with an accuracy of 76\%. It wasn't trained using any bearded face image database. \par
+
+
+\textbf{CNN Related}\par
+In 2006, Hinton and Salakhutdinov published an article \cite{hinton2006reducing}, for reducing dimensionality of data using neural networks. They suggested that multiple hidden layers in a neural network can be used for learning efficiently. It can improve the accuracy of prediction and classifying by obtaining different complex features from the input.\par
+Yann LeCun et al. in \cite{lecun1989generalization} discussed about the concept of CNN, where an architecture of a neural network was composed of two kinds of basic layers, known as convolutional layer and subsampling layer. However after that there was no major breakthrough of CNN, because it could not get ideal results on large size images. But the idea was changed when a deeper convolutional neural network was used.\par
+In 2017, Ke Shan introduced convolutional neural network structure for automatic facial expression recognition \cite{shan2017automatic}, that contained two convolutional and two subsampling layers. A softmax classifier was used for the classification of the expressions. But there was a limitation that it did not work with bearded face images. It was trained and tested on JAFFE and extended Cohn-Kanade (CK+) datasets with an accuracy of 76.74\% and 80.30\%.\par
+
+In our work we proposed a model that gives a better accuracy on those datasets and we also tested our result on manually collected datasets of our own that contains bearded face images.
+\clearpage

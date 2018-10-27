@@ -1,0 +1,97 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%----------------------------Chapter One-------------------------%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Introduction}
+\thispagestyle{empty}
+As we are going forward from one generation to another, technologies are abiding us according to our demands. Thus, we are thoroughly depending on these advanced technologies as a part of human-computer interaction(HCI). Human Computer Interaction plays an important role in resolving the absences of neutral sympathy in interaction between human being and machine. And one of them is recognizing facial expression. Face plays an important role in social communication and understanding ones behavior. Facial expressions not only exposes the inner feelings of any person but can also be used to judge his/her mental views. By understanding emotions machines can interact with humans in a more efficient way and take actions accordingly. HCI will be much more effective and useful if computer can predict about emotional state of human being and hence mood of a person from supplied images on the basis of facial expressions. This chapter contains some introductory information about facial expression recognition, motivation for our work, challenges of implementing our works and our objectives.
+
+\section{Facial Expression Recognition}
+One of the most expressive areas of the body is the face, capable of producing various types of expression or emotion.  It is the area most closely observed during an interaction. The American psychologist Ekman and Friesen defined seven categories of basic facial expression, which are Happy, Sad, Angry, Fear, Surprise, Disgust and Neutral \cite{ekman1971constants}. In Figure~\ref{fig:emotions} seven different emotions are shown.
+\captionsetup[figure]{labelfont={bf},name={Fig.},labelsep=period}
+\begin{figure}[h!]
+    \centering
+    \begin{subfigure}[b]{0.19\linewidth}
+        \includegraphics[width=\linewidth]{images/chapter1/RUPOSH_AN3.jpg}
+        \caption{Anger}
+    \end{subfigure}
+    \hspace{.01cm}
+    \begin{subfigure}[b]{0.19\linewidth}
+        \includegraphics[width=\linewidth]{images/chapter1/RUPOSH_DI2.jpg}
+        \caption{Disgust}
+    \end{subfigure}
+    \hspace{.01cm}
+    \begin{subfigure}[b]{0.19\linewidth}
+        \includegraphics[width=\linewidth]{images/chapter1/RUPOSH_FE1.jpg}
+        \caption{Fear}
+    \end{subfigure}
+    \hspace{.01cm}
+    \begin{subfigure}[b]{0.19\linewidth}
+        \includegraphics[width=\linewidth]{images/chapter1/RUPOSH_HA1.jpg}
+        \caption{Happy}
+    \end{subfigure}
+    \hspace{.01cm}
+    \begin{subfigure}[b]{0.19\linewidth}
+        \includegraphics[width=\linewidth]{images/chapter1/RUPOSH_NE2.jpg}
+        \caption{Neutral}
+    \end{subfigure}
+    \hspace{.01cm}
+    \begin{subfigure}[b]{0.19\linewidth}
+        \includegraphics[width=\linewidth]{images/chapter1/RUPOSH_SA1.jpg}
+        \caption{Sadness}
+    \end{subfigure}
+    \hspace{.01cm}
+    \begin{subfigure}[b]{0.19\linewidth}
+        \includegraphics[width=\linewidth]{images/chapter1/RUPOSH_SU1.jpg}
+        \caption{Surprise}
+    \end{subfigure}
+    \hspace{.01cm}
+    \caption{Seven basic human expressions}
+\label{fig:emotions}
+\end{figure}
+\\
+Facial expression recognition is the challenge for identifying the expression of a person. Facial expression recognition methods are separated into two categories:
+\begin{enumerate}
+    \item geometric-based methods
+    \item appearance-based methods.
+\end{enumerate}
+Geometric-based methods concern about the feature vectors encoding some facial geometric properties like position, distance and angle to determine the shapes and locations of the invariance points of face. Success of the methods depends on powerful face component detection methods to set facial invariance points, which provides a few difficulties in real life applications. Appearance-based methods use the features extracted directly from the images but does not include an information relating to the facial points.  Facial expressions make the certain regions of face change, which causes interest in just the special regions.
+
+\section{Motivation}
+Mehrabian pointed out that 7\% of human communication information is communicated by linguistic language (verbal part), 38\% by paralanguage (vocal part) and 55\% by facial expression \cite{mehrabian2008communication}. Therefore facial expressions are the most important information for emotions perception in face to face communication. That means we can achieve better understanding about human behavior by observing their face.\par
+So, facial expression recognition can play an important role for effective communication with machines. This motivates us to create a network model that will help machines to automatically determine human emotion from their facial expression. Currently it is a very active research topic due to its potential applications in many fields. Despite of the significant improvements, recognizing facial expression is still a challenging problem that is waiting for more and more accurate algorithms.
+
+\section{Challenges}
+For any machine learning project data collection is one of the most challenging tasks. Ours wasn't any different. As there wasn't any significant work on recognizing the facial expression of bearded face, we couldn't find any corpus containing bearded faces. So, we had to create our own corpus for bearded face.\par
+While collecting bearded face images of seven facial expressions, we found it as one of the most challenging part of our work. Giving expressions isn't an easy task. Most of the people couldn't give the right expressions. Beside each person gives same emotion in a different way and even the imaging condition changes facial expression appearance. So, collecting features from those images is another challenging task. Extracting important features for the expression recognition phase is also challenging. Sometimes even humans can't understand the expressions correctly. Different people may categorize the same expression in a different way. So, training the computer to recognize the expressions correctly is a very challenging task.
+
+\section{Contribution of the work}
+Our main goal was to classify the facial expression of a person in one of seven classes. There are many works related to facial expression recognition on non-bearded face image. Here we introduce two network models for recognizing the facial expression of both bearded and non-bearded face image. The key objectives and the possible outcomes of the work can be as follows:
+\begin{enumerate}
+    \item To develop a system that can-
+        \begin{itemize}
+            \item Separate the face portion from an image
+            \item Correctly recognize the expression of that image
+        \end{itemize}
+    \item To recognize facial expression of bearded people.
+    \item To train the system using supervised learning and evaluating the system performance.
+    \item To use two different classifiers Support Vector Machines(SVM) and Convolutional Neural Network(CNN) for the recognition task and comparing performance of these two classifiers.
+\end{enumerate}
+
+\section{General Architecture of Facial Expression Recognizer}
+The general architecture of the system is shown in Figure \ref{fig:general_architecture}.
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{chapter1/general_architecture.PNG}
+    \caption{General architecture of facial expression recognizer}
+    \label{fig:general_architecture}
+\end{figure}
+This architecture shows the high level view of our recognizer system. Expression will be detected from a static image. First we need to take the input image and detect face portion from that image. Then we extract necessary features from the face and pass it through the neural network for identifying the expression.
+
+\section{Organization of the Thesis}
+The remainder of the report is organized as follows. The next chapter contains an overview of our project related terminologies and brief discussion on previous works that is already been implemented with their limitations. In chapter three, the methodology of our proposed system is described in detail. In chapter four, we have illustrated the implementation of our system. Chapter five focuses on the experimental results of our system. In order to evaluate our system we used JAFFE and Cohn-Kanade datasets. For evaluating performance on bearded face image we carried out the tests on our own collected datasets. Limitations and fututre plan of our work is described in chapter six.
+
+
+

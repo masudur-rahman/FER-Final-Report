@@ -1,0 +1,238 @@
+\chapter{Implementation}
+\thispagestyle{empty}
+To implement the system an interface is designed where our proposed method is integrated so that it can correctly recognize the facial expression of a person. After creating the network it is trained so it can give a better prediction on a completely unseen image. In this chapter we discuss about our implementation procedure of our whole system in detail.
+\section{System Requirements}
+To perform machine learning efficiently a good hardware is mandatory. Beside an appropriate programming language with its associated libraries can help a lot. The tools that is required to implement our system is given below:
+\begin{itemize}
+    \item \textbf{Hardware Requirements:}
+    \begin{itemize}
+        \item Personal Computer
+        \item Digital Camera or Webcam
+    \end{itemize}
+    \item \textbf{System Configuration:}
+    \begin{itemize}
+        \item Windows or Linux operating system
+        \item 64-bit(x64) core-i3 processor
+        \item 4 GB RAM
+        \item Minimum of 100 MB free disk space
+    \end{itemize}
+    \item \textbf{Software Requirements:}
+    \begin{itemize}
+        \item Programming Language: Python
+        \item Software Libraries: OpenCV, Numpy, Tensorflow, TFLearn, Matplotlib, Scikit-learn, SVM
+        \item IDE: Sublime Text
+    \end{itemize}
+\end{itemize}
+
+\section{Implementation Details}
+To implement the system first the dataset is collected. Since the datasets are labeled datasets, they are sorted in a folder depending on their label. Then passed through preprocessing steps and classifier to train the system. Each steps are described below.
+
+\subsection{Dataset Collection}
+In our system we used three differnt types of dataset. They are: JAFFE, CK+ and our own collected bearded face images.
+
+\quad \textbf{JAFFE dataset:} JAFFE stands for Japanese Female Facial Expressions. The database contains 213 images of 7 facial expressions (6 basic facial expressions + 1 neutral) which was posed by 10 Japanese female models \cite{lyons1997japanese}. Each image was labeled. The JAFFE database was available free of charge for use in non-commercial research.And we collected the dataset to train our network model.
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.19\linewidth}
+        \includegraphics[width=\linewidth]{images/chapter4/KA_AN3_41.jpg}
+        \caption{Anger}
+    \end{subfigure}
+    \hspace{.01cm}
+    \begin{subfigure}[b]{0.19\linewidth}
+        \includegraphics[width=\linewidth]{images/chapter4/KA_DI1_42.jpg}
+        \caption{Disgust}
+    \end{subfigure}
+    \hspace{.01cm}
+    \begin{subfigure}[b]{0.19\linewidth}
+        \includegraphics[width=\linewidth]{images/chapter4/KA_FE2_46.jpg}
+        \caption{Fear}
+    \end{subfigure}
+    \hspace{.01cm}
+    \begin{subfigure}[b]{0.19\linewidth}
+        \includegraphics[width=\linewidth]{images/chapter4/KA_HA2_30.jpg}
+        \caption{Happy}
+    \end{subfigure}
+    \hspace{.01cm}
+    \begin{subfigure}[b]{0.19\linewidth}
+        \includegraphics[width=\linewidth]{images/chapter4/KA_NE1_26.jpg}
+        \caption{Neutral}
+    \end{subfigure}
+    \hspace{.01cm}
+    \begin{subfigure}[b]{0.19\linewidth}
+        \includegraphics[width=\linewidth]{images/chapter4/KA_SA2_34.jpg}
+        \caption{Sadness}
+    \end{subfigure}
+    \hspace{.01cm}
+    \begin{subfigure}[b]{0.19\linewidth}
+        \includegraphics[width=\linewidth]{images/chapter4/KA_SU3_38.jpg}
+        \caption{Surprise}
+    \end{subfigure}
+    \hspace{.01cm}
+    \caption{Some images from JAFFE dataset}
+\label{fig:jaffe_emotions}
+\end{figure}
+Figure-\ref{fig:jaffe_emotions} shows some images from JAFFE dataset.
+
+\quad \textbf{CK+ dataset:} Cohn-Kanade (CK) dataset was released for the research purpose to automatically detect individual facial expressions. But there was some difficulties in the dataset and extended Cohn-Kanade(CK+) database is introduced \cite{lucey2010extended}. It consists of neutral, sadness, surprise, happiness, fear, anger, contempt and disgust expression. From these expressions we took seven expressions ignoring the contempt. It has more than 300 image sequence for individual person. It was available for research purpose and we collected the dataset for our training purpose. Figure-\ref{fig:ckp_emotions} shows some images from extended Cohn Kanade dataset.
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.19\linewidth}
+        \includegraphics[width=\linewidth]{images/chapter4/ck_anger.png}
+        \caption{Anger}
+    \end{subfigure}
+    \hspace{.01cm}
+    \begin{subfigure}[b]{0.19\linewidth}
+        \includegraphics[width=\linewidth]{images/chapter4/ck_disgust.png}
+        \caption{Disgust}
+    \end{subfigure}
+    \hspace{.01cm}
+    \begin{subfigure}[b]{0.19\linewidth}
+        \includegraphics[width=\linewidth]{images/chapter4/ck_fear.png}
+        \caption{Fear}
+    \end{subfigure}
+    \hspace{.01cm}
+    \begin{subfigure}[b]{0.19\linewidth}
+        \includegraphics[width=\linewidth]{images/chapter4/ck_happy.png}
+        \caption{Happy}
+    \end{subfigure}
+    \hspace{.01cm}
+    \begin{subfigure}[b]{0.19\linewidth}
+        \includegraphics[width=\linewidth]{images/chapter4/ck_neutral.png}
+        \caption{Neutral}
+    \end{subfigure}
+    \hspace{.01cm}
+    \begin{subfigure}[b]{0.19\linewidth}
+        \includegraphics[width=\linewidth]{images/chapter4/ck_sad.png}
+        \caption{Sadness}
+    \end{subfigure}
+    \hspace{.01cm}
+    \begin{subfigure}[b]{0.19\linewidth}
+        \includegraphics[width=\linewidth]{images/chapter4/ck_surprise.png}
+        \caption{Surprise}
+    \end{subfigure}
+    \hspace{.01cm}
+    \caption{Some images from CK+ dataset}
+\label{fig:ckp_emotions}
+\end{figure}
+
+\quad \textbf{Bearded image dataset:} There was not any readily available dataset for bearded face image. So we had to collect the dataset by our own. We managed to collect the images of 15 different person with different types of expressions. There was total of 129 images. The database does not have every basic facial expressions of each person, but it has multiple image for one expression of one person. There was 18 images for anger, 16 images for disgust, 13 images for fear, 24 images for happy, 20 images for neutral, 14 images for sadness and 24 images for surprise. Figure- \ref{fig:bearded_emotions} shows some images from our dataset.
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.19\linewidth}
+        \includegraphics[width=\linewidth]{images/chapter4/bearded_anger.jpg}
+        \caption{Anger}
+    \end{subfigure}
+    \hspace{.01cm}
+    \begin{subfigure}[b]{0.19\linewidth}
+        \includegraphics[width=\linewidth]{images/chapter4/bearded_disgust.jpg}
+        \caption{Disgust}
+    \end{subfigure}
+    \hspace{.01cm}
+    \begin{subfigure}[b]{0.19\linewidth}
+        \includegraphics[width=\linewidth]{images/chapter4/bearded_fear.jpg}
+        \caption{Fear}
+    \end{subfigure}
+    \hspace{.01cm}
+    \begin{subfigure}[b]{0.19\linewidth}
+        \includegraphics[width=\linewidth]{images/chapter4/bearded_happy.jpg}
+        \caption{Happy}
+    \end{subfigure}
+    \hspace{.01cm}
+    \begin{subfigure}[b]{0.19\linewidth}
+        \includegraphics[width=\linewidth]{images/chapter4/bearded_neutral.jpg}
+        \caption{Neutral}
+    \end{subfigure}
+    \hspace{.01cm}
+    \begin{subfigure}[b]{0.19\linewidth}
+        \includegraphics[width=\linewidth]{images/chapter4/bearded_sad.jpg}
+        \caption{Sadness}
+    \end{subfigure}
+    \hspace{.01cm}
+    \begin{subfigure}[b]{0.19\linewidth}
+        \includegraphics[width=\linewidth]{images/chapter4/bearded_surprise.jpg}
+        \caption{Surprise}
+    \end{subfigure}
+    \hspace{.01cm}
+    \caption{Some images from our collected bearded dataset}
+\label{fig:bearded_emotions}
+\end{figure}
+All the datasets are fed separately in our network module to identify the performance of our network.
+
+\subsection{Sorting Dataset}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{images/chapter4/sorted_set.PNG}
+    \caption{Sorted images according to their label}
+    \label{fig:sorted_set}
+\end{figure}
+After collecting the dataset all the images in the dataset are sorted according to their label. That means for seven expressions we created seven folders each of which contains the image such that the image label is same as the folder name. Figure-\ref{fig:sorted_set} shows the sorted image folders.
+
+\subsection{Preprocessing}
+By performing preprocessing the image dimension is reduced and it helps in achieving a better recognition module.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = 4in]{images/chapter4/preprocessing.PNG}
+    \caption{Preprocessing Stages}
+    \label{fig:preprocessing}
+\end{figure}
+
+In preprocessing the following steps are followed:
+
+\quad \textbf{Step-1:} First we read the image from the sorted dataset.
+
+\quad \textbf{Step-2:} Then the image is converted into grayscale image.
+
+\quad \textbf{Step-3:} The face portion is detected from the grayscale image using Haar-like feature.
+
+\quad \textbf{Step-4:} The detected face portion is cropped to separate it from the background and other non-necessary parts.
+
+\quad \textbf{Step-5:} Histogram equalization is applied on the resultant image to enhance the image quality.
+
+\subsection{Implementation of Recognition Module}
+We implemented the FER system with two well-known machine learning techniques i.e. Support Vector Machines and Convolutional Neural Network. Upto preprocessing phase all steps were same for the two recognition techniques. After the preprocessing phase the two techniques do their job in different ways. Implementation techniques of the two techniques are breifly described below:
+
+\subsubsection{Support Vector Machines}
+Classifier design using Support vector machines is divided into two phases. First one is Feature Extraction and second one is SVM classifier. Preprocessed photo is the input of Feature extraction phase and the output of the feature extraction is is input of the SVM classifier. Finally the output of the SVM classifier is the expected expression.\par
+The following steps were followed during the classification by SVM:
+
+\quad \textbf{Step-1:} The input grayscale image is reshaped into $200 \times 200$. The reshaped image is then used to extract feature.\par
+\quad \textbf{Step-2:} In this step facial landmark is generated. We used dlib() library to get the facial landmarks from the face image. An illustration of facial landmark is shown on a face image in figure \ref{fig:photo_with_landmark}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=3in]{images/chapter4/photo_with_landmark1.png}
+    \caption{An image with facial landmark}
+    \label{fig:photo_with_landmark}
+\end{figure}
+\quad \textbf{Step-3:} In this step feature vector is generated from the generated facial landmarks. The features that we considered for our system are distance and angles of selected points from the center of the gravity of both eyes and mouth.\par
+A graph is shown in figure \ref{fig:feature_plot} showing some of important features plotted in it of seven face images of distinct expressions.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=4.5in]{images/chapter4/feature_plot.png}
+    \caption{A graph with some important features plotted}
+    \label{fig:feature_plot}
+\end{figure}
+\quad \textbf{Step-4:} In this step collected features were split into training and testing part. The training part of the features were sent to the SVM classifier for training.\par
+\quad \textbf{Step-5:} After the training is completed, the trained model is tested against testing set for evaluation of the system. Any testing image can be fed into the system to recognize the Facial Expression of the image. The test must be preprocessed following the same procedure as training phase.
+
+\subsubsection{Convolutional Neural Network}
+After the preprocessing the images are passed through the convolutional neural network for the recognition procedure.  The following steps are followed during classification:
+
+\quad \textbf{Step-1:} The input grayscale image is reshaped into $100 \times 100$. This is fed to the input layer of our CNN.
+
+\quad \textbf{Step-2:} In the second step the incoming tensor is passed through the convolutional and pooling layers so that we can get more important features with reduced size from the input image.
+
+\quad \textbf{Step-3:} The incoming features from convolutional and pooling layers are flattened and reshaped into a vector to connect with the fully connected layer.
+
+\quad \textbf{Step-4:} Softmax is used for our multiclass neural network. Which distributes the probability that a specific expression is found on that image.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{images/chapter4/training.PNG}
+    \caption{Training Phase}
+    \label{fig:training}
+\end{figure}
+
+\quad \textbf{Step-5:} The input dataset is splitted into training and testing set. Then the network is trained on the training dataset for 100 epoch. Fig-\ref{fig:training} shows some typical stages during the training procedure.
+
+\quad \textbf{Step-6:} After the training the network is tested against the testing dataset to calculate the accuracy of the network.
